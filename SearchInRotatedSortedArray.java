@@ -20,3 +20,16 @@ class Solution {
         return -1;
     }
 }
+// find minimum value in rotated sorted array
+class Solution {
+    public int findMin(int[] nums) {
+      int index = 0;
+        while(index<nums.length-1){
+            if(nums[index]>nums[index+1]){
+                return nums[index+1];
+            }
+            index++;
+        }
+        return nums[0];
+    }
+}
