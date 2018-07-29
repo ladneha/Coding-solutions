@@ -41,3 +41,28 @@ class IntersectionOfTwoArrays {
         return res;
     }
 }
+/*
+ This is only to return distinct elements
+*/
+class IntersectionOfTwoArraysI {
+    public int[] intersection(int[] nums1, int[] nums2) {
+      ArrayList<Integer> res = new ArrayList<Integer>();
+      HashSet<Integer> hs = new HashSet();
+        for(int i=0; i<nums1.length; i++){
+            hs.add(nums1[i]);
+        }
+        for(int i=0; i<nums2.length; i++){
+            if(hs.contains(nums2[i]))
+            {
+                if(!res.contains(nums2[i])){
+                  res.add(nums2[i]);
+                }
+            }
+        }
+        int[] result = new int[res.size()];
+        for(int i=0; i<result.length; i++){
+            result[i] = res.get(i);
+        }
+        return result;
+    }
+}
