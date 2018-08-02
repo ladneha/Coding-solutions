@@ -1,0 +1,49 @@
+google-interview-questions1
+of 1 vote
+15 
+Answers
+Write a function that takes a magic number and a list of numbers. It returns true if it can insert add or subtract operations in the list of numbers to get the magic number. Otherwise, it returns false. 
+
+For example: 
+
+f(10, [1,2]) = false. There's no way to add or subtract 1 and 2 to get 10. 
+f(2, [1,2,3,4]) = true. 1 + 2 + 3 - 4 = 2. 
+f(0, []) = true 
+f(1, []) = false 
+f(1, [1]) = true 
+f(0, [1]) = false
+
+Solution1:
+
+private static boolean isMgic(int ans, int[] arr)
+{
+    return isMgic(ans, arr, 0, 0);
+}
+
+private static boolean isMgic(int ans, int[] arr, int index, int tmp)
+{
+    if (arr.length > index)
+        return (isMgic(ans, arr, index + 1, tmp + arr[index])
+                | isMgic(ans, arr, index + 1, tmp - arr[index]));
+    if (ans == tmp)
+        return true;
+    return false;
+}
+
+Solution2:
+
+boolean isMagicNumberPossible(int[] arr, int magicNumber) {
+		boolean flag = true;
+		
+		for(int i=0; i<arr.length; i++) {
+			int requiredVal = magicNumber - arr[i];
+			for(int j=1; j < arr.length; j++) {
+				if(requiredVal == arr[j]) return true;
+				else if(requiredVal < arr[j]) requiredVal = requiredVal + arr[j];
+				else requiredVal = requiredVal - arr[j];
+			}
+			flag = false;
+		}
+		
+		return flag;
+}
